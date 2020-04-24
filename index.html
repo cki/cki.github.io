@@ -1,1 +1,207 @@
-Hello World
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+
+
+    <style>
+      body {
+      padding-bottom: 2em;
+      }
+      h2 {
+      margin-Top: 1.3em;
+      }
+      .container {
+      margin-top: 1.8em;
+      }
+      .datatablecontainer {
+      margin-Top: 0.3em;
+      margin-Bottom: 1.8em;
+      }
+    </style>
+    <title>cki's Blog</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-md-center">
+	<div class="col col-lg-2">
+	</div>
+	<div class="col-md-auto">
+	  <h1>Tankers are still undervalued</h1>
+	  <h5>Disclaimer</h5>
+	  <p>
+	    I am a retail investor. Fintwit would probably call me a tanker tourist. Do not take anything I write as investment advise. Caveat emptor.
+	  </p>
+
+	  <h2>Thesis</h2>
+	  <p>
+	    I started to invest in Tankers in late 2019. While the thesis has not changed since then, it got boosted.<br />
+	    The initial thesis was: The crude and product tankers market has gotten constraint. <u>Supply and demand is shifting.</u>
+	  </p>
+	  <p>
+	    In late 2019 IMO2020 was on the horizon forcing all tankers to use low sulfur oil or invest in scrubbers for the year 2020.<br />
+	    This alone made operating older vessels less profitable. IMO2030 with yet unknown looming conditions is constraining the tanker order books for newbuilds.<br/>
+	    Who is going to buy a vessel that gets written off in 20 years if they don't know what specs the vessel should have? 
+	    With an aging fleet, supply and demand is going to shift in favor of suppliers.
+	  </p>
+	  <p>
+	    <u>COVID-19 added a boost to the thesis.</u>The increasing contango in the oil market is taking up vessels for storage deals, decreasing the supply of tankers even further and putting a bottom under tanker rates.
+	  </p>
+
+	  <p>
+	    Since earnings season is coming up. I wanted to take the time and check in on my investments. In the following I will estimate what the companies have earned already and guestimate the outlook for the rest of the year.
+	  </p>
+
+	  <h2>Counterthesis</h2>
+	  <p>
+	    <u>Management is not what you wish for.</u> When checking up on corporate management you are reminded of pirates of the old age.<br />
+	    If they decide to waste the companies inflow of cash (on newbuilds) the whole thesis could crumble.
+	  </p>
+
+	  <p>
+	    <u>Volatility is high.</u> It seems that some algos have bunched tanker companies with oil companies. This makes for a very rough ride when investing in tankers.<br/>
+	    It also gives quite decent entry chances.
+	  </p>
+
+	  <p>
+	    <u>Tanker customers could default.</u> Tanker companies apparently can not take posession of oil legally. They still have to deliver the cargo. <br />
+	    They try to diversify their customers but given that their background is not very diverse you have systemic risk in your portfolio.<br />
+	    When a customer defaults the tanker might be hostage to the bank
+	    bankruptcy management of the customer. Where do they offload their cargo given current storage dynamics?
+	  </p>
+	  <p>
+	    <u>The stonks might not move.</u> I honestly do not know why you invest if you do not believe in buying a undervalued company given high earnings.<br />
+	    Some companies have dividend "guaranteed" policies so there might be a downside protection.<br />
+	    Given time and data I will try and incorporate downside protection into my model and post an update. <br />
+	    Earnings season could act as a catalyst (next month).
+	  </p>
+	  <p>
+
+	  </p>
+
+
+	  <h2>The dataset</h2>
+	  <p>
+	    Being the retail investor that I am, I have to take the breadcrumbs that are provided to me by the community. <br />
+	    I am especially thankful for the data provided by <a href="https://twitter.com/JHannisdahl">@JHannisdahl</a> containing daily TCE Spot rates.<br />
+	    This piece is my way of saying thanks to the community that gave me the idea, the confidence to trade it and data to write this piece. <br />
+	    I want to especially thank: <a href="https://twitter.com/hkuppy">@hkuppy</a>, <a href="https://twitter.com/calvinfroedge">calvinfroedge</a>, <a href="https://twitter.com/JimmyWar77">@JimmyWar77</a>, <a href="https://twitter.com/the5hippingman">@the5hippingman</a>.
+	  </p>
+	  <p>
+	    Having no access to freight forward agreements or any other proprietary data,  I had to collect TCE spot rates from twitter.
+	    Whenever I had a written update for a given vessel class I took the given rate from the current date till the next update.
+	  </p>
+	  <p>
+	    My estimation can only be as good as my dataset. In late 2019 I already tried and asked for datasets - no luck.<br/>
+	    <u>I'd be happy to take your dataset and update my numbers</u>. <br />
+	    I have a background in data processing - I'll take any data you have and clean it up if it looks useful.
+	  </p>
+	  <p>
+	    <u>More accurate projections might be possible:</u> One tanker pool operator selectively publishes numbers for their VLCC.
+	    This would give a more accurate forecast for companies having spot exposure to VLCC. <br />
+	    It could also give insight into geographic exposure of companies given that trips to China seem to be extremely sought after.<br />
+	    For example: DHT's next earnings could probably be forecasted with a high degree of confidence.
+	  </p>
+
+
+	  <h2>My calculations</h2>
+	  <h3>Estimated TCE by vessel type</h3>
+	  <i>Below my estimation of the  TCE (in thousands) by Tankertype from 2020-01-01 till 2020-04-23</i>
+	  <div class="datatablecontainer">
+	    <table class="table table-dark table-hover" id="vesselrates">
+	      <thead><tr><th scope='col'>Tankertype</th><th scope='col'>Min</th><th scope='col'>Mean-σ</th><th scope='col'>Mean</th><th scope='col'>Mean+σ</th><th scope='col'>Max</th></tr></thead>
+	      <tbody>
+		<tr><th scope='row'> VLCC </th> <td> 15.0 </td> <td> 20.78 </td> <td> 99.61 </td> <td> 178.44 </td> <td> 262.0 </td> </tr>
+		<tr><th scope='row'> Aframax </th> <td> 18.0 </td> <td> 24.74 </td> <td> 42.58 </td> <td> 60.42 </td> <td> 84.0 </td> </tr>
+		<tr><th scope='row'> Suezmax </th> <td> 20.0 </td> <td> 26.28 </td> <td> 50.54 </td> <td> 74.8 </td> <td> 118.0 </td> </tr>
+		<tr><th scope='row'> LR1 </th> <td> 27.0 </td> <td> 21.46 </td> <td> 34.58 </td> <td> 47.7 </td> <td> 103.0 </td> </tr>
+		<tr><th scope='row'> LR2 </th> <td> 18.0 </td> <td> 12.73 </td> <td> 39.84 </td> <td> 66.95 </td> <td> 151.0 </td> </tr>
+		<tr><th scope='row'> SR </th> <td> 35.0 </td> <td> 31.58 </td> <td> 35.94 </td> <td> 40.3 </td> <td> 58.0 </td> </tr>
+		<tr><th scope='row'> MR </th> <td> 19.0 </td> <td> 19.2 </td> <td> 23.18 </td> <td> 27.16 </td> <td> 41.0 </td> </tr>
+	      </tbody>
+	    </table>
+	  </div>
+	  
+	  <h3>Are tanker companies still cheap?</h3>
+	  <p>
+	    In the following I take the number of vessels a company has in a given vessel type. For every given vesseltype I take aboves rates and multiply by the number of days since the start of the year.
+	    To take matters into perspective I divide the endproduct by the Marketcap.
+	  </p>
+	  <p>
+	    <u>This methodology has flaws!</u> <br/>
+	    Not all vessels of a given company have spot exposure.<br />
+	    I do not have TCE for all vesseltypes. If a vessel falls into a category for which I do not have data, it earns nothing.<br />
+	    Some vessels are bunched together on companywebsites.<br />
+	    Product tankers could take crude. I have no source on in which market a tanker operates.	    <br />
+
+	    For some of those flaws I tried to add a note.
+	  </p>
+
+
+	  <i>Below MCAP in USD and  MCAP divided by summed TCE from above from 2020-01-01 till 2020-04-23</i>
+	  <div class="datatablecontainer">
+	    <table class="table table-dark table-hover" id="companyratesmcap">
+
+	      <thead><tr><th scope='col'>Company</th><th scope='col'>MCAP</th><th scope='col'>Min</th><th scope='col'>Mean - σ</th><th scope='col'>Mean</th><th scope='col'>Mean + σ</th><th scope='col'>Max</th><th scope='col'>Note</th></tr></thead>
+	      <tbody>
+		<tr><th scope='row'> fro </th> <td> 2070000000 </td><td> 0.1 </td> <td> 0.38 </td> <td> 0.24  </td> <td> 0.09 </td> <td> 0.58 </td><td> Aframax count also contains LR2 </td></tr>
+		<tr><th scope='row'> hafnia </th> <td> 794000000 </td><td> 0.5 </td> <td> 0.79 </td> <td> 0.62  </td> <td> 0.45 </td> <td> 1.61 </td><td> LR1 count also contains LR2. Hafnia also has 27 handy sized vessels which are not included. </td></tr>
+		<tr><th scope='row'> stng </th> <td> 1430000000 </td><td> 0.2 </td> <td> 0.39 </td> <td> 0.28  </td> <td> 0.16 </td> <td> 0.81 </td><td> STNG also has 21 Handymax vessels which are not included </td></tr>
+		<tr><th scope='row'> dht </th> <td> 1190000000 </td><td> 0.0 </td> <td> 0.46 </td> <td> 0.25  </td> <td> 0.05 </td> <td> 0.68 </td><td>  </td></tr>
+		<tr><th scope='row'> insw </th> <td> 770410000 </td><td> 0.1 </td> <td> 0.49 </td> <td> 0.3  </td> <td> 0.11 </td> <td> 0.79 </td><td> LR1 also contains Panamax </td></tr>
+		<tr><th scope='row'> eurn </th> <td> 2350000000 </td><td> 0.0 </td> <td> 0.35 </td> <td> 0.2  </td> <td> 0.06 </td> <td> 0.52 </td><td>  </td></tr>
+		<tr><th scope='row'> tnp </th> <td> 351000000 </td><td> 0.3 </td> <td> 0.85 </td> <td> 0.59  </td> <td> 0.32 </td> <td> 1.31 </td><td>  </td></tr>
+		<tr><th scope='row'> dssi </th> <td> 563000000 </td><td> 0.3 </td> <td> 0.51 </td> <td> 0.39  </td> <td> 0.28 </td> <td> 0.79 </td><td>  </td></tr>
+		<tr><th scope='row'> tnk </th> <td> 797450000 </td><td> 0.1 </td> <td> 0.45 </td> <td> 0.31  </td> <td> 0.16 </td> <td> 0.69 </td><td> TNK also has 3 FPSO, 51 LNG, 31 LPG Vessels which are not included. </td></tr>
+		<tr><th scope='row'> oet </th> <td> 244205000 </td><td> 0.1 </td> <td> 0.95 </td> <td> 0.57  </td> <td> 0.18 </td> <td> 1.43 </td><td> Aframax count contains LR2 </td></tr>
+	      </tbody>
+
+	    </table>
+	  </div>
+
+	  <p>
+	    So are they still cheap? I'd say yes but given aboves table and a companies balancesheet I guess you can decide for yourself how much you want to downgrade the TCE and measure up against a companies liabilities.
+	  </p>
+
+
+	  <div class="col col-lg-2">
+	  </div>
+      </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+
+<script>
+  $(document).ready(function() {
+
+  $('#vesselrates').DataTable({
+  "paging":   false,
+  "info":     false,
+  "searching": false,
+  "order": [[4, "Mean"]]
+  });
+
+  $('#companyratesmcap').DataTable({
+  "paging":   false,
+  "info":     false,
+  "searching": false,
+  "order": [[5, "Mean"]]
+  });
+
+  });
+</script>
+  </body>
+</html>
