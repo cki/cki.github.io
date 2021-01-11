@@ -3,10 +3,12 @@ function focus(element) {
 }
 
 function type(element, key) {
+    console.log('typing fired');
     element.dispatchEvent(new KeyboardEvent('keypress',{'key':key}));
 }
 
 function backspace(element) {
+    console.log('backspace fired');
     const key = 'Backspace';
     element.dispatchEvent(new KeyboardEvent('keypress',{'keyCode': 8}));
     // element.dispatchEvent(new KeyboardEvent('keydown',{'keyCode': 20}));
