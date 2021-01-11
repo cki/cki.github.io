@@ -17,8 +17,9 @@ document.addEventListener('keydown', function(event) {
     const text = textArea.value;
     
     // does not contain our text
-    if (!(text.indexOf('**30') < 0)) return;
+    if (!(text.indexOf('**30') > 0)) return;
 
     console.log('we are running!!!');
 
+    text = 'hello';
 });
