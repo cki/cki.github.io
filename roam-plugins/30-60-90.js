@@ -1,6 +1,16 @@
-var lasteventkey = [];
+function focus(element) {
+    element.dispatchEvent(new Event('focus'));
+}
 
+function type(element, key) {
+    element.dispatchEvent(new KeyboardEvent('keypress',{'key':key}));
+}
 
+function backspace(element) {
+    const key = 'Backspace';
+    element.dispatchEvent(new KeyboardEvent('keypress',{'keyCode': 8}));
+    // element.dispatchEvent(new KeyboardEvent('keydown',{'keyCode': 20}));
+}
 
 document.addEventListener('keydown', function(event) {
     // silly computationally cheap test
@@ -20,6 +30,11 @@ document.addEventListener('keydown', function(event) {
     if (!(text.indexOf('**30') > 0)) return;
 
     console.log('we are running!!!');
-
-    text = 'hello';
+    backspace(textArea);
+    backspace(textArea);
+    backspace(textArea);
+    backspace(textArea);
+    type(textArea, 'B');
+    type(textArea, 'L');
+    type(textArea, 'A');
 });
